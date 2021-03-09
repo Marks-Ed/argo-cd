@@ -190,6 +190,8 @@ const (
 	EnvGithubAppCredsExpirationDuration = "ARGOCD_GITHUB_APP_CREDS_EXPIRATION_DURATION"
 	// EnvHelmIndexCacheDuration controls how the helm repository index file is cached for (default: 0)
 	EnvHelmIndexCacheDuration = "ARGOCD_HELM_INDEX_CACHE_DURATION"
+	// EnvClusterUpdateInterval controls how often to refresh resource in clusters in seconds (default: 10)
+	EnvClusterUpdateInterval = "ARGOCD_CLUSTER_UPDATE_INTERVAL"
 )
 
 const (

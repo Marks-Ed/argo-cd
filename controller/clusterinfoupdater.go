@@ -10,16 +10,18 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 
+	"github.com/argoproj/argo-cd/common"
 	"github.com/argoproj/argo-cd/controller/metrics"
 	appv1 "github.com/argoproj/argo-cd/pkg/apis/application/v1alpha1"
 	"github.com/argoproj/argo-cd/pkg/client/listers/application/v1alpha1"
 	"github.com/argoproj/argo-cd/util/argo"
 	appstatecache "github.com/argoproj/argo-cd/util/cache/appstate"
 	"github.com/argoproj/argo-cd/util/db"
+	"github.com/argoproj/argo-cd/util/env"
 )
 
-const (
-	secretUpdateInterval = 10 * time.Second
+var (
+	secretUpdateInterval = env.ParseDurationFromEnv(common.EnvClusterUpdateInterval, 10*time.Second, 10*time.Second, 300*time.Second)
 )
 
 type clusterInfoUpdater struct {
